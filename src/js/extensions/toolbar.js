@@ -624,7 +624,7 @@
                 buttonHeight = 50,
                 defaultLeft = this.diffLeft - halfOffsetWidth,
                 elementsContainer = this.getEditorOption('elementsContainer'),
-                elementsContainerAbsolute = ['absolute', 'fixed'].indexOf(window.getComputedStyle(elementsContainer).getPropertyValue('position')) > -1,
+                elementsContainerAbsolute = ['absolute', 'fixed', 'relative'].indexOf(window.getComputedStyle(elementsContainer).getPropertyValue('position')) > -1,
                 positions = {},
                 relativeBoundary = {},
                 middleBoundary, elementsContainerBoundary;
