@@ -2452,6 +2452,10 @@ MediumEditor.extensions = {};
     'use strict';
 
     function isElementDescendantOfExtension(extensions, element) {
+        if (!extensions) {
+            return false;
+        }
+
         return extensions.some(function (extension) {
             if (typeof extension.getInteractionElements !== 'function') {
                 return false;
@@ -3784,8 +3788,8 @@ MediumEditor.extensions = {};
                 // and provide similar access to a `fa-` icon default.
                 template.push(
                     '<div class="medium-editor-toolbar-form-row">',
-                    '<input type="checkbox" class="medium-editor-toolbar-anchor-button">',
-                    '<label>',
+                    '<input type="checkbox" class="medium-editor-toolbar-anchor-button" id="medium-editor-toolbar-anchor-button-field-' + this.getEditorId() + '">',
+                    '<label for="medium-editor-toolbar-anchor-button-field-' + this.getEditorId() + '">',
                     this.customClassOptionText,
                     '</label>',
                     '</div>'
@@ -5343,6 +5347,10 @@ MediumEditor.extensions = {};
 
             if (this.cleanPastedHTML && pastedHTML) {
                 return this.cleanPaste(pastedHTML);
+            }
+
+            if (!pastedPlain) {
+                return;
             }
 
             if (!(this.getEditorOption('disableReturn') || (editable && editable.getAttribute('data-disable-return')))) {
@@ -7878,7 +7886,7 @@ MediumEditor.parseVersionString = function (release) {
 
 MediumEditor.version = MediumEditor.parseVersionString.call(this, ({
     // grunt-bump looks for this:
-    'version': '5.23.2'
+    'version': '5.23.3'
 }).version);
 
     return MediumEditor;
